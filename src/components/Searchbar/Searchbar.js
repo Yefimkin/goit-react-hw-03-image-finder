@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
+import { BsSearch } from 'react-icons/bs';
+
+
+
 const StyledSearchBar = styled.header`
 	top: 0;
 	left: 0;
@@ -49,18 +53,6 @@ const StyledSearchFormButton = styled.button`
 	}
 `;
 
-const StyledSearchFormButtonLabel = styled.span`
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	white-space: nowrap;
-	clip-path: inset(50%);
-	border: 0;
-`;
-
 const StyledSearchFormItem = styled.input`
 	display: inline-block;
 	width: 100%;
@@ -95,7 +87,7 @@ export default class SearchBar extends Component {
 			<StyledSearchBar>
 				<StyledSearchForm onSubmit={this.handleSubmit}>
 					<StyledSearchFormButton type="submit">
-						<StyledSearchFormButtonLabel>Search</StyledSearchFormButtonLabel>
+						<BsSearch />
 					</StyledSearchFormButton>
 
 					<StyledSearchFormItem
@@ -111,3 +103,6 @@ export default class SearchBar extends Component {
 }
 
 SearchBar.propTypes = { onSubmit: PropTypes.func };
+
+
+
