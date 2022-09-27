@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SearchBar from './Searchbar/Searchbar';
-import ImageSearchApi from './ImageSearchApi/ImageSearchApi';
+import ImageSearchApi from '../services/imageSearchApi';
 import ImageGallery from './ImageGallery/ImageGallery.js';
 import Button from './Button/Button';
 import Loader from './Loader/Loader';
@@ -26,9 +26,7 @@ export default class App extends Component {
     shouldScroll: false,
   };
 
-  componentDidMount() {}
-
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(_, prevState) {
     const prevQuery = prevState.searchQuery;
     const nextQuery = this.state.searchQuery;
     if (prevQuery !== nextQuery) {
@@ -83,7 +81,9 @@ export default class App extends Component {
     return (
       <AppStyled>
         {error && <p>Whoops, something went wrong</p>}
+
         <SearchBar onSubmit={this.handleSearchFormSubmit}></SearchBar>
+
         {pictures.length > 0 && (
           <ImageGallery
             pictures={pictures}

@@ -6,6 +6,7 @@ import { BsSearch } from 'react-icons/bs';
 
 
 
+
 const StyledSearchBar = styled.header`
 	top: 0;
 	left: 0;
@@ -77,8 +78,11 @@ export default class SearchBar extends Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault();
+		if (this.state.inputValue.trim() === "") {
+			alert('Please enter search query');
+      		return;
+		}
 		this.props.onSubmit(this.state.inputValue);
-		this.setState({ inputValue: "" });
 	};
 
 	render() {
@@ -101,7 +105,7 @@ export default class SearchBar extends Component {
 	}
 }
 
-SearchBar.propTypes = { onSubmit: PropTypes.func };
+SearchBar.propTypes = { onSubmit: PropTypes.func.isRequired };
 
 
 

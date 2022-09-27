@@ -8,7 +8,7 @@ export default class LoaderSpinner extends Component {
       <Dna
         visible={true}
         height={100}
-		width={100}
+		    width={100}
         ariaLabel="dna-loading"
         wrapperStyle={{ margin: "auto"
             
