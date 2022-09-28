@@ -81,9 +81,7 @@ export default class App extends Component {
     return (
       <AppStyled>
         {error && <p>Whoops, something went wrong</p>}
-
         <SearchBar onSubmit={this.handleSearchFormSubmit}></SearchBar>
-
         {pictures.length > 0 && (
           <ImageGallery
             pictures={pictures}
