@@ -5,14 +5,7 @@ import ImageGallery from './ImageGallery/ImageGallery.js';
 import Button from './Button/Button';
 import Loader from './Loader/Loader';
 import Modal from './Modal/Modal';
-import styled from 'styled-components';
-
-const AppStyled = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 16px;
-  padding-bottom: 24px;
-`;
+import AppStyled from './App.styled';
 
 export default class App extends Component {
   state = {
@@ -29,7 +22,7 @@ export default class App extends Component {
   componentDidUpdate(_, prevState) {
     const prevQuery = prevState.searchQuery;
     const nextQuery = this.state.searchQuery;
-    if (prevQuery !== nextQuery) {
+    if (prevQuery !== nextQuery || prevState.page !== this.state.page) {
       this.fetchPictures();
     }
     if (this.state.shouldScroll === true) {
@@ -47,7 +40,6 @@ export default class App extends Component {
       .then(pictures =>
         this.setState(prevState => ({
           pictures: [...prevState.pictures, ...pictures],
-          page: prevState.page + 1,
         }))
       )
       .catch(error => this.setState({ error: true }))
@@ -55,11 +47,13 @@ export default class App extends Component {
   };
 
   handleSearchFormSubmit = query => {
-    this.setState({
-      searchQuery: query,
-      page: 1,
-      pictures: [],
-    });
+    if (this.setState.searchQuery !== query) {
+      this.setState({
+        searchQuery: query,
+        page: 1,
+        pictures: [],
+      });
+    }
   };
 
   toggleModalImg = largeImageUrl => {
@@ -69,10 +63,7 @@ export default class App extends Component {
   };
 
   handleButton = () => {
-    this.fetchPictures();
-    if (this.state.page > 1) {
-      this.setState({ shouldScroll: true });
-    }
+    this.setState(prevState => prevState + 1);
   };
 
   render() {
