@@ -47,7 +47,7 @@ export default class App extends Component {
   };
 
   handleSearchFormSubmit = query => {
-    if (this.setState.searchQuery !== query) {
+    if (this.state.searchQuery !== query) {
       this.setState({
         searchQuery: query,
         page: 1,
